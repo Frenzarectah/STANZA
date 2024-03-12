@@ -4,6 +4,8 @@
 <b>A</b>dmi<b>N</b>istrator with<br/>
 <b>Z</b>ero<br/>
 <b>A</b>nxiety<br/>
+___________________________________________________________<br/>
+<hr/>
 Easy and flexible REST API for Managing Hostels &amp; BB
-
+___________________________________________________________<br/>
 
