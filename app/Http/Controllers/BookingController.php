@@ -32,7 +32,10 @@ class   BookingController extends Controller
             'Email' => 'required|email',
             'tel' => 'required|string',
             'Arrive' => 'required|date',
-            'Partenza' => 'required|date'
+            'Partenza' => 'required|date',
+            'customer_id' => 'required',
+            'dailyPrice' => 'integer',
+            'price' => 'integer'
         ];
         $this->validate($request,$rules);
         $bookings = Booking::create($request->all());
@@ -61,5 +64,9 @@ class   BookingController extends Controller
     {
         $book = Booking::destroy($book);
         return $this->successResponse($book,Response::HTTP_OK);
+    }
+    public function allbookings($customer_id){
+        $customer_booking = Booking::where('customer_id','=',$customer_id)->get();
+        return $customer_booking;
     }
 }

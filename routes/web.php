@@ -24,6 +24,7 @@ $router->get('/customers/{customer}','CustomerController@show');
 
 $router->get('/bookings', 'BookingController@index');
 $router->get('/bookings/{single_booking}', 'BookingController@show');
+$router->get('bookings/all_book/{customer_id}','BookingController@allbookings');
 
 $router->post('/customers','CustomerController@store');
 $router->post('/bookings','BookingController@store');

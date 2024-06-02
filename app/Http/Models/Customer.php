@@ -15,4 +15,7 @@ class Customer extends Model
     public static function create(array $data) {
         return static::query()->create($data);
     }
+    public function bookings(){
+        return $this->hasMany(Booking::class, 'customer_id');
+    }
 }
