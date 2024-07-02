@@ -1,3 +1,7 @@
+
+# STANZA - Socool Tourism AdmiNistrator Zero Anxiety  
+# handmade API backbone for B&b/Holyday with zero Sbatti (WIP project)
+
 # Lumen PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
