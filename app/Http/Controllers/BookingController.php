@@ -34,8 +34,8 @@ class   BookingController extends Controller
             'Arrive' => 'required|date',
             'Partenza' => 'required|date',
             'customer_id' => 'required',
-            'dailyPrice' => 'integer',
-            'price' => 'integer'
+            'dailyPrice' => 'required|integer',
+            'person' => 'required|integer'
         ];
         $this->validate($request,$rules);
         $bookings = Booking::create($request->all());
@@ -55,7 +55,7 @@ class   BookingController extends Controller
             'Email' => 'required|email',
             'tel' => 'required|string',
             'Arrive' => 'required|date',
-            'Partenza' => 'required|date'
+            'Partenza' => 'required|date',
         ];
         $this->validate($request,$rules);
 
@@ -67,6 +67,10 @@ class   BookingController extends Controller
     }
     public function allbookings($customer_id){
         $customer_booking = Booking::where('customer_id','=',$customer_id)->get();
+        if ($customer_booking->isEmpty()){
+            return $this->successResponse("customer not in the database yet",Response::HTTP_OK);
+            die();
+        }
         return $customer_booking;
     }
 }

@@ -16,19 +16,21 @@ class Booking extends Model
         'Partenza',
         'person',
         'dailyPrice',
-        'customer_id',
-        'price'
+        'price',
+        'customer_id'
     ];
     public static function create(array $data) {
         
         $dailyPrice = $data['dailyPrice'];
         $departure = new DateTime($data['Partenza']);
         $arrive = new DateTime($data['Arrive']);
-        $days = $departure->diff($arrive);
+        $days = $departure->diff($arrive)->d;
         $person = $data['person'];
     
-        $price = $days->d*$dailyPrice*$person;
+        $price = $days*$dailyPrice*$person;
+        var_dump($price);
         $data['price'] = $price;
+        error_log("Calcolo del prezzo: $price");
 
         return static::query()->create($data);
     }
