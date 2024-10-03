@@ -1,5 +1,6 @@
+![image](https://github.com/user-attachments/assets/c2b33709-7bf1-4259-adff-3a90e946e538)
+# STANZA - Socool Tourism AdmiNistrator Zero Anxiety
 
-# STANZA - Socool Tourism AdmiNistrator Zero Anxiety  
 handmade API backbone for B&b/Holyday with zero Sbatti (WIP project)</br>
 created with:
 # Lumen PHP Framework
