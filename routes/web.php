@@ -12,6 +12,7 @@
 */
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ShoppingController;
 
 //AUTHORS
 $router->get('/login', function(){ return "<h1>Welcome to STANZA  - Socool Tourism AdmiNistrator Zero Anxiety</h1>";
@@ -32,3 +33,8 @@ $router->post('/bookings','BookingController@store');
 $router->put('/customers/{customer}','CustomerController@update');
 $router->patch('/customers/{customer}','CustomerController@update');
 $router->delete('/customers/{customer}','CustomerController@destroy');
+
+//SHOPPING LIST
+
+$router->get('/shopping_list','ShoppingController@index');
+$router->post('/shopping_list','ShoppingController@store');
