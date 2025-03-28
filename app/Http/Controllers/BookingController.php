@@ -33,9 +33,9 @@ class   BookingController extends Controller
             'tel' => 'required|string',
             'Arrive' => 'required|date',
             'Partenza' => 'required|date',
-            'customer_id' => 'required',
-            'dailyPrice' => 'required|integer',
-            'person' => 'required|integer'
+            'customer_id' => 'integer',
+            'dailyPrice' => 'integer',
+            'person' => 'integer'
         ];
         $this->validate($request,$rules);
         $bookings = Booking::create($request->all());
