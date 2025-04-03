@@ -36,12 +36,12 @@ class   CustomerController extends Controller
         return $this->successResponse($customer, Response::HTTP_CREATED);
 
     }
-    public function show($author)
+    public function show($customer)
     {
-        $customer = Customer::findOrFail($author);
-        return $this->successResponse($author);
+        $customer = Customer::findOrFail($customer);
+        return $this->successResponse($customer);
     }
-    public function update(Request $request, $author)
+    public function update(Request $request, $customer)
     {
         $rules = [
             'name' => 'required|max:255|string',
