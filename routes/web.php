@@ -38,3 +38,4 @@ $router->delete('/customers/{customer}','CustomerController@destroy');
 
 $router->get('/shopping_list','ShoppingController@index');
 $router->post('/shopping_list','ShoppingController@store');
+$router->delete('/shopping_list/{item}','ShoppingController@destroy');
