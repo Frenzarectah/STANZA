@@ -12,6 +12,18 @@ class CustomerController extends Controller
 {
     use ApiResponser;
 
+    public $validate = [
+        'name'      => 'required|max:50|string',
+        'surname'   => 'required|max:50|string',
+        'gender'    => 'required|max:10|in:male,female',
+        'nation'    => 'required|string|max:3',
+        'birthday'  => 'required|date',
+        'email'     => 'required|email|max:50|unique:customers,email',
+        'phone'     => 'max:15',
+        'document'  => 'file|required|mimes:jpeg,png,pdf|max:5120',
+        'document_type' => 'required|string|max:20|in:id_doc,driver_lic,passport'
+    ];
+
     function public_path($path = '')
     {
         return app()->basePath('public') . ($path ? DIRECTORY_SEPARATOR . $path : $path);
@@ -35,17 +47,10 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
-        $rules = [
-            'name'    => 'required|max:255|string',
-            'gender'  => 'required|max:10|in:male,female',
-            'country' => 'string|max:3',
-            'document' => 'file|mimes:jpeg,png,pdf|max:5120' // NUOVA VALIDAZIONE (max 5MB)
-        ];
-        $this->validate($request, $rules);
+        $this->validate($request, $this->validate);
 
-        $data = $request->only(['name', 'gender', 'country']);
+        $data = $request->only(['name', 'surname', 'gender', 'nation', 'birthday', 'email', 'phone', 'document_type']);
 
-        // Upload del file se viene passato
         if ($request->hasFile('document')) {
             $file     = $request->file('document');
             $uploadPath = app()->basePath('public/uploads');
@@ -54,7 +59,7 @@ class CustomerController extends Controller
             }
             $fileName = uniqid() . '_' . $file->getClientOriginalName();
             $file->move($uploadPath, $fileName);
-            $data['document'] = 'uploads/' . $fileName; // Salva solo percorso relativo
+            $data['document'] = 'uploads/' . $fileName;
         }
 
         $customer = Customer::create($data);
@@ -73,13 +78,7 @@ class CustomerController extends Controller
 
     public function update(Request $request, $customer)
     {
-        $rules = [
-            'name'    => 'required|max:255|string',
-            'gender'  => 'required|max:10|in:male,female',
-            'country' => 'string|max:3',
-            'document' => 'file|mimes:jpeg,png,pdf|max:5120'
-        ];
-        $this->validate($request, $rules);
+        $this->validate($request, $this->validate);
 
         $customer = Customer::findOrFail($customer);
         $data = $request->only(['name', 'gender', 'country']);

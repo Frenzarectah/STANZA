@@ -9,9 +9,14 @@ class Customer extends Model
 {
     protected $fillable = [
         'name',
+        'surname',
         'gender',
-        'country',
-        'document'
+        'nation',
+        'birthday',
+        'email',
+        'phone',
+        'document',
+        'document_type'
     ];
     public static function create(array $data)
     {
