@@ -11,12 +11,14 @@ class Customer extends Model
         'name',
         'gender',
         'country',
+        'document'
     ];
-    public static function create(array $data) {
+    public static function create(array $data)
+    {
         return static::query()->create($data);
     }
-    public function bookings(){
+    public function bookings()
+    {
         return $this->hasMany(Booking::class, 'customer_id');
     }
-
 };
